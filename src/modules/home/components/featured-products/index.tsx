@@ -1,5 +1,6 @@
 import { HttpTypes } from "@medusajs/types"
 import ProductRail from "@modules/home/components/featured-products/product-rail"
+import CollectionCarousel from "@modules/home/components/featured-products/collection-carousel"
 
 export default async function FeaturedProducts({
   collections,
@@ -10,7 +11,7 @@ export default async function FeaturedProducts({
 }) {
   return collections.map((collection) => (
     <li key={collection.id}>
-      <ProductRail collection={collection} region={region} />
+      <CollectionCarousel collection={collection} region={region} />
     </li>
   ))
 }
