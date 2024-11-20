@@ -23,8 +23,25 @@ export default async function Home({
     return null
   }
 
+  // /////////////////////////////////
+  // const debugInfo = collections.map(c => ({
+  //   title: c.title,
+  //   productCount: c.products?.length || 0
+  // }))
+  // /////////////////////////////////
+
   return (
     <>
+          {/* <div className="p-4 bg-yellow-100 space-y-2">
+        <h3>Debug Information:</h3>
+        {debugInfo.map((info, i) => (
+          <div key={i}>
+            Collection: {info.title} - Products: {info.productCount}
+          </div>
+        ))}
+      </div> */}
+
+
       <Hero />
       <div className="py-12">
         <ul className="flex flex-col gap-x-6">

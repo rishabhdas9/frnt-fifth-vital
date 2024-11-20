@@ -6,7 +6,7 @@ import { ProductTileClient } from '@modules/products/components/product-tile/til
 
 export default async function ProductTile({
   product,
-  regionId,
+  regionId
 }: {
   product: StoreProduct
   regionId: string

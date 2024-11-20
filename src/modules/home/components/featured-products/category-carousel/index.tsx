@@ -1,54 +1,48 @@
 import { HttpTypes } from "@medusajs/types"
-import { Text } from "@medusajs/ui"
 import { Box } from '@modules/common/components/box'
 import { Container } from '@modules/common/components/container'
 import InteractiveLink from "@modules/common/components/interactive-link"
-// import ProductPreview from "@modules/products/components/product-preview"
 import ProductTile from "@modules/products/components/product-tile"
 import CarouselWrapper from '@modules/products/components/product-carousel/carousel-wrapper'
 
-interface CollectionCarouselProps {
-  collection: HttpTypes.StoreCollection
+interface CategoryCarouselProps {
+  category: HttpTypes.StoreProductCategory
   region: HttpTypes.StoreRegion
 }
 
-export default function CollectionCarousel({
-  collection,
+export default function CategoryCarousel({
+  category,
   region,
-}: CollectionCarouselProps) {
-  const { products } = collection
+}: CategoryCarouselProps) {
+  const { products } = category
 
-  if (!products ) {
+//   if (!products || products.length < 5) 
+if (!products) 
+    {
     return null
   }
-
-  const displayProducts = products.slice(0, 5)
 
   return (
     <Container className="overflow-hidden py-12 small:py-24">
       <Box className="flex flex-col gap-6 small:gap-12">
-        <CarouselWrapper title={collection.title} productsCount={displayProducts.length}>
+        <CarouselWrapper title={category.name} productsCount={products.length}>
           <Box className="flex gap-2">
-            {displayProducts.map((product) => (
+            {products.map((product) => (
               <Box
                 className="flex-[0_0_calc(72.666%-8px)] small:flex-[0_0_calc(62.666%-8px)] medium:flex-[0_0_calc(42.666%-8px)] xl:flex-[0_0_calc(33.333%-8px)] 2xl:flex-[0_0_calc(30.333%-8px)]"
                 key={product.id}
               >
-                {/* <ProductPreview product={product} region={region} isFeatured /> */}
                 <ProductTile product={product} regionId={region.id} />
               </Box>
             ))}
           </Box>
         </CarouselWrapper>
         <InteractiveLink 
-          href={`/collections/${collection.handle}`}
-          // className="mx-auto w-max"
+          href={`/categories/${category.handle}`}
         >
           View all
         </InteractiveLink>
       </Box>
     </Container>
-    
   )
 }
-
