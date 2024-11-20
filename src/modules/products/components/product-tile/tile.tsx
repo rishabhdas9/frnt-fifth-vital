@@ -1,3 +1,5 @@
+'use client'
+
 import { StoreProduct } from "@medusajs/types"
 import { Box } from "@modules/common/components/box"
 import { Button } from "@medusajs/ui"
@@ -5,6 +7,12 @@ import LocalizedClientLink from "@modules/common/components/localized-client-lin
 import { Text } from "@modules/common/components/text"
 import { Clock, Users } from "lucide-react"
 import ProductPrice from "./price"
+
+import { useState } from 'react'
+import { useParams } from 'next/navigation'
+import { addToCart } from '@lib/data/cart'
+import { toast } from '@modules/common/components/toast'
+import { LoaderCircle } from 'lucide-react'
 
 export function ProductTileClient({
   product,
@@ -21,6 +29,38 @@ export function ProductTileClient({
     percentage_diff: string
   }
 }) {
+  const [isAddingToCart, setIsAddingToCart] = useState(false)
+  const countryCode = useParams().countryCode as string
+
+  const cheapestVariant = product.variants[0]
+
+  const isOutOfStock = cheapestVariant.inventory_quantity <= 0
+
+  const handleAddToCart = async () => {
+    if (!product.id || isOutOfStock) return null
+
+    setIsAddingToCart(true)
+    try {
+      await addToCart({
+        variantId: cheapestVariant.id,
+        quantity: 1,
+        countryCode,
+      })
+      toast('success', 'Product was added to cart!')
+    } catch (error) {
+      toast('error', error)
+    } finally {
+      setIsAddingToCart(false)
+    }
+  }
+
+
+
+
+
+
+
+
   return (
     <Box className="group flex flex-col">
       <Box className="relative h-[200px] bg-[#1B4B40] p-6 text-white">
@@ -65,13 +105,23 @@ export function ProductTileClient({
           >
             <Button
               variant="secondary"
-              className="w-full text-white border-white hover:bg-white/10"
+              className="w-full text-orange border-white hover:bg-white/10"
             >
               View Details
             </Button>
           </LocalizedClientLink>
-          <Button className="w-full bg-orange-500 hover:bg-orange-600">
-            Add to Cart
+           <Button 
+            className="w-full bg-orange-500 hover:bg-orange-600"
+            disabled={isAddingToCart || isOutOfStock}
+            onClick={handleAddToCart}
+          >
+            {isAddingToCart ? (
+              <LoaderCircle />
+            ) : isOutOfStock ? (
+              "Out of Stock"
+            ) : (
+              "Add to Cart"
+            )}
           </Button>
         </div>
       </Box>

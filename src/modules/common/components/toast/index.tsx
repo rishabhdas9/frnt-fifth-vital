@@ -1,4 +1,4 @@
-import { CheckCircleIcon, XCircleIcon } from '@modules/common/icons'
+import { CheckCircleIcon, XCircleIcon } from 'lucide-react'
 import { toast as sonnerToast } from 'sonner'
 
 const baseClassname = {

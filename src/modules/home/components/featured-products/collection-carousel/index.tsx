@@ -6,6 +6,7 @@ import InteractiveLink from "@modules/common/components/interactive-link"
 // import ProductPreview from "@modules/products/components/product-preview"
 import ProductTile from "@modules/products/components/product-tile"
 import CarouselWrapper from '@modules/products/components/product-carousel/carousel-wrapper'
+import ProductActions from "@modules/products/components/product-actions/index"
 
 interface CollectionCarouselProps {
   collection: HttpTypes.StoreCollection
