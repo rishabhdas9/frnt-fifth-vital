@@ -26,8 +26,8 @@ export default function CollectionCarousel({
   const displayProducts = products.slice(0, 5)
 
   return (
-    <Container className="overflow-hidden py-12 small:py-24">
-      <Box className="flex flex-col gap-6 small:gap-12">
+    <Container className="overflow-hidden py-6 small:py-12">
+      <Box className="flex flex-col gap-3 small:gap-6">
         <CarouselWrapper title={collection.title} productsCount={displayProducts.length}>
           <Box className="flex gap-2">
             {displayProducts.map((product) => (

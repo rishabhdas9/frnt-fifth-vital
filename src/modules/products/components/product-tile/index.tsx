@@ -20,6 +20,7 @@ export default async function ProductTile({
     <ProductTileClient
       product={expandedProduct}
       cheapestPrice={cheapestPrice}
+      region={expandedProduct.region}
     />
   )
 }

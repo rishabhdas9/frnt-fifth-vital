@@ -23,7 +23,7 @@ if (!products)
   }
 
   return (
-    <Container className="overflow-hidden py-12 small:py-24">
+    <Container className="overflow-hidden py-8 small:py-24">
       <Box className="flex flex-col gap-6 small:gap-12">
         <CarouselWrapper title={category.name} productsCount={products.length}>
           <Box className="flex gap-2">

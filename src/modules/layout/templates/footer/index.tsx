@@ -7,7 +7,7 @@ import MedusaCTA from "@modules/layout/components/medusa-cta"
 
 export default async function Footer() {
   const { collections } = await getCollectionsList(0, 6)
-  const { product_categories } = await getCategoriesList(0, 6)
+  const { categories: product_categories } = await getCategoriesList(0, 6)
 
   return (
     <footer className="border-t border-ui-border-base w-full">
