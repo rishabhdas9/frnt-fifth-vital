@@ -1,4 +1,3 @@
-import { Github } from "@medusajs/icons"
 import { Button, Heading, Input } from "@medusajs/ui"
 import {
   Search,

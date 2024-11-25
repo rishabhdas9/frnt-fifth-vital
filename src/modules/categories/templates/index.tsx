@@ -29,12 +29,30 @@ export default function CategoryTemplate({
   if (!category || !countryCode) notFound()
 
   return (
+    <>
+    
     <div
       className="flex flex-col small:flex-row small:items-start py-6 content-container"
       data-testid="category-container"
     >
+      
       <RefinementList sortBy={sort} data-testid="sort-by-container" />
       <div className="w-full">
+         {/* Category Banner */}
+      <div className="w-full h-[300px] relative mb-8">
+        <div className="absolute inset-0 bg-[#1B4B40] flex items-center justify-center">
+          <div className="text-center text-white space-y-4 p-8">
+            <h1 className="text-4xl font-bold" data-testid="category-page-title">
+              {category.name}
+            </h1>
+            {category.description && (
+              <p className="text-lg max-w-2xl mx-auto text-white/80">
+                {category.description}
+              </p>
+            )}
+          </div>
+        </div>
+      </div>
         <div className="flex flex-row mb-8 text-2xl-semi gap-4">
           {parents &&
             parents.map((parent) => (
@@ -53,22 +71,29 @@ export default function CategoryTemplate({
         </div>
         {category.description && (
           <div className="mb-8 text-base-regular">
-            <p>{category.description}</p>
+            <p>{category.description} Tests</p>
           </div>
         )}
         {category.category_children && (
-          <div className="mb-8 text-base-large">
-            <ul className="grid grid-cols-1 gap-2">
-              {category.category_children?.map((c) => (
-                <li key={c.id}>
-                  <InteractiveLink href={`/categories/${c.handle}`}>
-                    {c.name}
-                  </InteractiveLink>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
+  <div className="mb-8">
+    
+    <ul className="grid grid-cols-2 small:grid-cols-3 medium:grid-cols-4 gap-4">
+      {category.category_children?.map((c) => (
+        <li key={c.id}>
+          <InteractiveLink 
+            href={`/categories/${c.handle}`}
+            className="block p-4 bg-[#deecff] text-white hover:bg-[#b3d3ff] rounded-lg transition-colors"
+          >
+            <span className="flex items-center justify-between">
+              <span>{c.name}</span>
+              <span className="text-white/60">→</span>
+            </span>
+          </InteractiveLink>
+        </li>
+      ))}
+    </ul>
+  </div>
+)}
         <Suspense fallback={<SkeletonProductGrid />}>
           <PaginatedProducts
             sortBy={sort}
@@ -79,5 +104,6 @@ export default function CategoryTemplate({
         </Suspense>
       </div>
     </div>
+    </>
   )
 }

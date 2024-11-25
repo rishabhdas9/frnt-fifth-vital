@@ -34,9 +34,9 @@ export function ProductTileClient({
   const [isAddingToCart, setIsAddingToCart] = useState(false)
   const countryCode = useParams().countryCode as string
 
-  const cheapestVariant = product.variants[0]
+  const cheapestVariant = product.variants?.[0]
 
-  const isOutOfStock = cheapestVariant.inventory_quantity <= 0
+  const isOutOfStock = !cheapestVariant || cheapestVariant.inventory_quantity <= 0
 
   const handleAddToCart = async () => {
     if (!product.id || isOutOfStock) return null
@@ -50,7 +50,7 @@ export function ProductTileClient({
       })
       toast('success', 'Product was added to cart!')
     } catch (error) {
-      toast('error', error)
+      toast('error', error instanceof Error ? error.message : 'An unknown error occurred')
     } finally {
       setIsAddingToCart(false)
     }
