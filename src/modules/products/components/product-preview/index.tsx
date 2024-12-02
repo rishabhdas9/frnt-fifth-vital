@@ -32,7 +32,7 @@ export default async function ProductPreview({
   })
 
   const cheapestVariant = product.variants?.[0]
-  const isOutOfStock = !cheapestVariant || cheapestVariant.inventory_quantity <= 0
+  const isOutOfStock = !cheapestVariant || cheapestVariant?.inventory_quantity === 0
 
   return (
     <Box className="group flex flex-col">

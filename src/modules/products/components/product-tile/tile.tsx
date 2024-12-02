@@ -36,7 +36,7 @@ export function ProductTileClient({
 
   const cheapestVariant = product.variants?.[0]
 
-  const isOutOfStock = !cheapestVariant || cheapestVariant.inventory_quantity <= 0
+  const isOutOfStock = !cheapestVariant || cheapestVariant.inventory_quantity === 0
 
   const handleAddToCart = async () => {
     if (!product.id || isOutOfStock) return null

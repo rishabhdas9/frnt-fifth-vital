@@ -35,7 +35,10 @@ export async function getOrSetCart(countryCode: string) {
 
   if (!cart) {
     const cartResp = await sdk.store.cart.create(
-      { region_id: region.id },
+      {
+        region_id: region.id,
+        sales_channel_id: process.env.NEXT_PUBLIC_SALES_CHANNEL_ID, // TODO: Make this dynamic
+      },
       {},
       getAuthHeaders()
     )
@@ -47,7 +50,10 @@ export async function getOrSetCart(countryCode: string) {
   if (cart && cart?.region_id !== region.id) {
     await sdk.store.cart.update(
       cart.id,
-      { region_id: region.id },
+      {
+        region_id: region.id,
+        sales_channel_id: process.env.NEXT_PUBLIC_SALES_CHANNEL_ID, // TODO: Make this dynamic
+      },
       {},
       getAuthHeaders()
     )
@@ -59,12 +65,19 @@ export async function getOrSetCart(countryCode: string) {
 
 export async function updateCart(data: HttpTypes.StoreUpdateCart) {
   const cartId = getCartId()
+  console.log("cartId", cartId)
   if (!cartId) {
     throw new Error("No existing cart found, please create one before updating")
   }
 
+    // Ensure sales_channel_id is always updated
+    const updatedData = {
+        ...data,
+    sales_channel_id: process.env.NEXT_PUBLIC_SALES_CHANNEL_ID,
+  }
+
   return sdk.store.cart
-    .update(cartId, data, {}, getAuthHeaders())
+    .update(cartId, updatedData, {}, getAuthHeaders())
     .then(({ cart }) => {
       revalidateTag("cart")
       return cart

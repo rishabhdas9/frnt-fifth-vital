@@ -43,7 +43,7 @@ export default function CollectionCarousel({
         </CarouselWrapper>
         <InteractiveLink 
           href={`/collections/${collection.handle}`}
-          // className="mx-auto w-max"
+          className=" text-ui-fg-interactive"
         >
           View all
         </InteractiveLink>

@@ -14,15 +14,15 @@ export function ProductActions({ product }: { product: StoreProduct }) {
   const [isAddingToCart, setIsAddingToCart] = useState(false)
   const countryCode = useParams().countryCode as string
 
-  const cheapestVariant = product.variants.reduce(
+  const cheapestVariant = (product.variants?.reduce(
     (cheaperVariant, currentVariant) => {
-      const { original_amount: cheaperPrice } = cheaperVariant.calculated_price
-      const { original_amount: currentPrice } = currentVariant.calculated_price
+      const cheaperPrice = cheaperVariant.calculated_price?.original_amount ?? 0
+      const currentPrice = currentVariant.calculated_price?.original_amount ?? 0
       return cheaperPrice < currentPrice ? cheaperVariant : currentVariant
     }
-  )
+  ) || product.variants?.[0])!
 
-  const isOutOfStock = cheapestVariant.inventory_quantity <= 0
+  const isOutOfStock = cheapestVariant?.inventory_quantity === 0
 
   const handleAddToCart = async () => {
     if (!product.id || isOutOfStock) return null
@@ -30,12 +30,12 @@ export function ProductActions({ product }: { product: StoreProduct }) {
     setIsAddingToCart(true)
     try {
       await addToCart({
-        variantId: cheapestVariant.id,
+        variantId: cheapestVariant?.id,
         quantity: 1,
         countryCode,
       })
     } catch (error) {
-      toast('error', error)
+      toast('error', (error as Error).message || 'An error occurred')
     } finally {
       toast('success', 'Product was added to cart!')
       setIsAddingToCart(false)

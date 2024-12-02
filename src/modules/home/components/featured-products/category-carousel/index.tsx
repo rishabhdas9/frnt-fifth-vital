@@ -38,7 +38,7 @@ if (!products)
           </Box>
         </CarouselWrapper>
         <InteractiveLink 
-          href={`/categories/${category.handle}`}
+          href={`/categories/${category.handle}`} className="text-ui-fg-interactive"
         >
           View all
         </InteractiveLink>

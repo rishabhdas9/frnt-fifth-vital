@@ -32,7 +32,7 @@ export default function OrderCompletedTemplate({
             className="flex flex-col gap-y-3 text-ui-fg-base text-3xl mb-4"
           >
             <span>Thank you!</span>
-            <span>Your order was placed successfully.</span>
+            <span>Your booking is confirmed.</span>
           </Heading>
           <OrderDetails order={order} />
           <Heading level="h2" className="flex flex-row text-3xl-regular">
