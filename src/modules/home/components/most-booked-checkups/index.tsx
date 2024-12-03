@@ -6,28 +6,28 @@ const MostBookedCheckups = () => {
     {
       title: "Full Body Checkup",
       icon: Users,
-      bgColor: "bg-gradient-to-br from-orange-400 to-orange-300",
+      bgColor: "bg-gradient-to-br from-orange-500 to-orange-400",
       size: "col-span-2",
       href: "/in/categories/all-full-body-checkups",
     },
     {
       title: "Sexual Health",
       icon: Activity,
-      bgColor: "bg-gradient-to-br from-emerald-400 to-emerald-300",
+      bgColor: "bg-gradient-to-br from-emerald-500 to-emerald-400",
       size: "col-span-2",
       href: "/in/categories/sexual-health-tests-and-checkups",
     },
     {
       title: "Women Health",
       icon: Heart,
-      bgColor: "bg-gradient-to-br from-emerald-400 to-emerald-300",
+      bgColor: "bg-gradient-to-br from-emerald-500 to-emerald-400",
       size: "col-span-2",
       href: "/in/categories/women-health",
     },
     {
       title: "Fever Checkup",
       icon: Thermometer,
-      bgColor: "bg-gradient-to-br from-orange-400 to-orange-300",
+      bgColor: "bg-gradient-to-br from-orange-500 to-orange-400",
       size: "col-span-2",
       href: "/in/categories/fever-checkup",
     },
@@ -44,7 +44,7 @@ const MostBookedCheckups = () => {
             </p>
             <Link
               href="/in/categories/complete-health-checkups"
-              className="inline-block text-emerald-600 hover:text-emerald-700 font-medium transition-colors"
+              className="inline-block text-indigo-600 hover:text-indigo-700 font-medium transition-colors"
             >
               View All Checkups
             </Link>
