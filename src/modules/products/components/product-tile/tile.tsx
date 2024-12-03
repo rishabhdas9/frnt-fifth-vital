@@ -58,7 +58,7 @@ export function ProductTileClient({
 
   return (
     <Box className="group flex flex-col">
-      <Box className="relative h-[240px] bg-[#1B4B40] p-6 text-white flex flex-col rounded-lg">
+      <Box className="relative h-[240px] bg-indigo-600 p-6 text-white flex flex-col rounded-lg">
         {/* Title at the top */}
         <Text
           title={product.title}

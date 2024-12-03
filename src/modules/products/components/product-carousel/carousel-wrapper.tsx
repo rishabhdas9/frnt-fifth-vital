@@ -72,7 +72,7 @@ export default function CarouselWrapper({
             onClick={scrollPrev}
             disabled={!canScrollPrev}
           >
-            <ArrowLeftIcon />
+            <ArrowLeftIcon color="#6366f1" />
           </Button>
           <Button
             withIcon
@@ -81,7 +81,7 @@ export default function CarouselWrapper({
             onClick={scrollNext}
             disabled={!canScrollNext}
           >
-            <ArrowRightIcon />
+            <ArrowRightIcon color="#6366f1" />
           </Button>
         </Box>
       </Box>
