@@ -83,7 +83,7 @@ export function ProductTileClient({
   
           <div className="flex items-center justify-between">
             <div>
-              <Box className="flex items-center gap-2 text-white">
+              <Box className="flex items-center gap-2 text-slate-50">
                 {cheapestPrice.price_type === "sale" && (
                   <Text size="md" className="line-through opacity-75">
                     {formatPrice(cheapestPrice.original_price, region)}
