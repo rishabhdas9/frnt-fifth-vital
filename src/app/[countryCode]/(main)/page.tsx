@@ -1,14 +1,14 @@
 import { Metadata } from "next"
-
+import MostBookedCheckups from "@modules/home/components/most-booked-checkups"
 import FeaturedProducts from "@modules/home/components/featured-products"
 import Hero from "@modules/home/components/hero"
 import { getCollectionsWithProducts } from "@lib/data/collections"
 import { getRegion } from "@lib/data/regions"
 
 export const metadata: Metadata = {
-  title: "Medusa Next.js Starter Template",
+  title: "Fifth Vital | Book Health Checkups Online at a NABL Accredited Lab",
   description:
-    "A performant frontend ecommerce starter template with Next.js 14 and Medusa.",
+    "Book Health Checkups Online at a NABL Accredited Lab.",
 }
 
 export default async function Home({
@@ -48,6 +48,7 @@ export default async function Home({
           <FeaturedProducts collections={collections} region={region} />
         </ul>
       </div>
+      <MostBookedCheckups />
     </>
   )
 }

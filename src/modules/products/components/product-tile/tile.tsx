@@ -73,7 +73,7 @@ export function ProductTileClient({
           <div className="flex items-center justify-between text-sm text-gray-300">
             <div className="flex items-center gap-2">
               <Users className="w-4 h-4" />
-              <span>91 parameters</span>
+              <span>NABL Accredited</span>
             </div>
             <div className="flex items-center gap-2">
               <Clock className="w-4 h-4" />
@@ -104,7 +104,7 @@ export function ProductTileClient({
             >
               <Button
                 variant="secondary"
-                className="w-full text-black border-white hover:bg-white/10"
+                className="w-full text-black border-1 border-orange-500 hover:bg-orange-50"
               >
                 View Details
               </Button>

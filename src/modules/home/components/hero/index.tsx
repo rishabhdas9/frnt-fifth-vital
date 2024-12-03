@@ -45,21 +45,21 @@ const Hero = () => {
                   priority
                 />
                 {/* Reports Badge */}
-                <div className="absolute -right-4 top-4 z-10 rounded-2xl bg-amber-50 px-4 py-2 shadow-lg">
+                <div className="absolute -right-4 top-4 z-10 rounded-2xl bg-orange-50 px-4 py-2 shadow-lg">
                   <div className="flex items-center gap-2">
-                    <div className="rounded-full bg-amber-500 p-1">
+                    <div className="rounded-full bg-orange-500 p-1">
                       <Package className="h-4 w-4 text-white" />
                     </div>
                     <div className="text-sm">
                       <span className="text-gray-600">Reports in</span>
-                      <div className="font-bold text-amber-600">24 HOURS</div>
+                      <div className="font-bold text-orange-600">24 HOURS</div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Search Section */}
+            {/* Search Section
             <div className="mx-auto mt-8 max-w-3xl">
               <div className="relative rounded-2xl bg-white p-2 shadow-lg backdrop-blur-lg">
                 <div className="flex flex-col gap-4 md:flex-row md:items-center">
@@ -85,14 +85,38 @@ const Hero = () => {
                     </Button>
                   </div>
                 </div>
+              </div> */}
+              
+              <div className="mx-auto mt-8 max-w-2xl">
+              
+                <div className="flex justify-center gap-4">
+                <Link href="/in/categories/tests">
+                  <Button 
+                    className="gap-2 bg-orange-500 hover:bg-orange-600 text-white px-6 py-4 text-lg"
+                  >
+                    <TestTubes className="h-6 w-6" />
+                    Lab Tests
+                  </Button>
+                </Link>
+                <Link href="/in/categories/complete-health-checkups">
+                  <Button
+                    variant="secondary"
+                    className="gap-2 border-2 border-orange-500 text-orange-500 hover:bg-orange-50 px-6 py-4 text-lg"
+                  >
+                    <Package className="h-6 w-6" />
+                    Checkups
+                  </Button>
+                </Link>
               </div>
+
+
               {/* Promotional Text */}
               <div className="mt-4 text-center text-sm text-gray-600">
-                Search for{" "}
+                Book{" "}
                 <span className="font-semibold text-indigo-500">Tests</span>{" "}
-                or{" "}
+                and{" "}
                 <span className="font-semibold text-indigo-500">Checkups</span>{" "}
-                
+                <span>right away!</span>
               </div>
             </div>
           </div>
@@ -114,7 +138,7 @@ const Hero = () => {
               },
               {
                 icon: FileText,
-                title: "Reports in 6 hours",
+                title: "Reports in 12 hours",
                 description: "For most tests",
               },
             ].map((item, index) => (
