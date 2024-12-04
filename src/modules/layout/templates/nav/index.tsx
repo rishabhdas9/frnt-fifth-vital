@@ -1,5 +1,5 @@
 import { Suspense } from "react"
-
+import NavbarSearch from "@modules/layout/components/navbar-search"
 import { listRegions } from "@lib/data/regions"
 import { StoreRegion } from "@medusajs/types"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
@@ -38,8 +38,11 @@ export default async function Nav() {
             </LocalizedClientLink>
           </div>
 
+    
+
           <div className="flex items-center gap-x-6 h-full flex-1 basis-0 justify-end">
             <div className="hidden small:flex items-center gap-x-5 h-full">
+            <NavbarSearch />
               <LocalizedClientLink
                 className="font-bold text-indigo-500 hover:text-white px-2 py-2 rounded-md 
                           transition-all duration-200 ease-in-out
