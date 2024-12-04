@@ -98,11 +98,13 @@ export const getProductsListWithSort = cache(async function ({
   queryParams,
   sortBy = "created_at",
   countryCode,
+  searchQuery,
 }: {
   page?: number
   queryParams?: HttpTypes.FindParams & HttpTypes.StoreProductParams
   sortBy?: SortOptions
   countryCode: string
+  searchQuery?: string
 }): Promise<{
   response: { products: HttpTypes.StoreProduct[]; count: number }
   nextPage: number | null
@@ -117,22 +119,32 @@ export const getProductsListWithSort = cache(async function ({
     queryParams: {
       ...queryParams,
       limit: 100,
+      q: searchQuery,
     },
     countryCode,
   })
 
   const sortedProducts = sortProducts(products, sortBy)
 
+  // Filter products by search query if provided
+  const filteredProducts = searchQuery 
+    ? sortedProducts.filter(product => 
+        product.title?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        product.description?.toLowerCase().includes(searchQuery.toLowerCase())
+      )
+    : sortedProducts
+
+
   const pageParam = (page - 1) * limit
 
-  const nextPage = count > pageParam + limit ? pageParam + limit : null
+  const nextPage = filteredProducts.length > pageParam + limit ? pageParam + limit : null
 
-  const paginatedProducts = sortedProducts.slice(pageParam, pageParam + limit)
+  const paginatedProducts = filteredProducts.slice(pageParam, pageParam + limit)
 
   return {
     response: {
       products: paginatedProducts,
-      count,
+      count: filteredProducts.length,
     },
     nextPage,
     queryParams,
