@@ -1,6 +1,6 @@
 "use client"
 
-import { Button } from "@medusajs/ui"
+import Button from "@modules/common/components/custom-button"
 import { isEqual } from "lodash"
 import { useParams } from "next/navigation"
 import { useEffect, useMemo, useRef, useState } from "react"
@@ -149,7 +149,6 @@ export default function ProductActions({
         </Button>
         <MobileActions
           product={product}
-          variant={selectedVariant}
           options={options}
           updateOptions={setOptionValue}
           inStock={inStock}

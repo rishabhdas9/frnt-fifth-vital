@@ -7,6 +7,12 @@ import React, { useEffect, useMemo, useState } from "react"
 import AddressSelect from "../address-select"
 import CountrySelect from "../country-select"
 
+const DEFAULT_LOCATION = {
+  country_code: "IN", // Change this to your country code
+  province: "Karnataka", // Change this to your state/province
+  city: "Bengaluru", // Change this to your city
+}
+
 const ShippingAddress = ({
   customer,
   cart,
@@ -60,6 +66,14 @@ const ShippingAddress = ({
   }
 
   useEffect(() => {
+    const defaultFormData = {
+      "shipping_address.country_code": DEFAULT_LOCATION.country_code,
+      "shipping_address.province": DEFAULT_LOCATION.province,
+      "shipping_address.city": DEFAULT_LOCATION.city,
+    }
+
+
+
     // Ensure cart is not null and has a shipping_address before setting form data
     if (cart && cart.shipping_address) {
       setFormAddress(cart?.shipping_address, cart?.email)
@@ -128,12 +142,15 @@ const ShippingAddress = ({
           data-testid="shipping-address-input"
         />
         <Input
-          label="Company"
+          label=""
           name="shipping_address.company"
           value={formData["shipping_address.company"]}
           onChange={handleChange}
           autoComplete="organization"
           data-testid="shipping-company-input"
+          style={{
+            display: "none",
+          }}
         />
         <Input
           label="Postal code"
@@ -148,8 +165,10 @@ const ShippingAddress = ({
           label="City"
           name="shipping_address.city"
           autoComplete="address-level2"
-          value={formData["shipping_address.city"]}
+          value={DEFAULT_LOCATION.city}
+          readOnly
           onChange={handleChange}
+          
           required
           data-testid="shipping-city-input"
         />
@@ -157,8 +176,9 @@ const ShippingAddress = ({
           name="shipping_address.country_code"
           autoComplete="country"
           region={cart?.region}
-          value={formData["shipping_address.country_code"]}
+          value={DEFAULT_LOCATION.country_code}
           onChange={handleChange}
+          className="readonly:bg-gray-100"
           required
           data-testid="shipping-country-select"
         />
@@ -166,22 +186,23 @@ const ShippingAddress = ({
           label="State / Province"
           name="shipping_address.province"
           autoComplete="address-level1"
-          value={formData["shipping_address.province"]}
+          value={DEFAULT_LOCATION.province}
           onChange={handleChange}
           required
           data-testid="shipping-province-input"
         />
       </div>
-      <div className="my-8">
+      <div className="my-8 opacity-0 readonly hidden pb-4">
         <Checkbox
           label="Billing address same as shipping address"
           name="same_as_billing"
           checked={checked}
           onChange={onChange}
           data-testid="billing-address-checkbox"
+          
         />
       </div>
-      <div className="grid grid-cols-2 gap-4 mb-4">
+      <div className="grid grid-cols-2 gap-4 mb-4 pt-6">
         <Input
           label="Email"
           name="email"
@@ -200,6 +221,8 @@ const ShippingAddress = ({
           value={formData["shipping_address.phone"]}
           onChange={handleChange}
           data-testid="shipping-phone-input"
+          required
+        
         />
       </div>
     </>

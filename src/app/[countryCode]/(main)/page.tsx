@@ -2,6 +2,7 @@ import { Metadata } from "next"
 import MostBookedCheckups from "@modules/home/components/most-booked-checkups"
 import FeaturedProducts from "@modules/home/components/featured-products"
 import Hero from "@modules/home/components/hero"
+import VitalOrgans from "@modules/home/components/vital-organs"
 import { getCollectionsWithProducts } from "@lib/data/collections"
 import { getRegion } from "@lib/data/regions"
 
@@ -49,6 +50,7 @@ export default async function Home({
         </ul>
       </div>
       <MostBookedCheckups />
+      <VitalOrgans />
     </>
   )
 }

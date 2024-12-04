@@ -1,6 +1,6 @@
 'use client'
 
-import { Button } from "@medusajs/ui"
+import Button from "@modules/common/components/custom-button"
 import { LoaderCircle } from "lucide-react"
 import { useState } from "react"
 import { useParams } from "next/navigation"

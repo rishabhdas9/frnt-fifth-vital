@@ -38,7 +38,12 @@ export default function OrderCompletedTemplate({
           <Heading level="h2" className="flex flex-row text-3xl-regular">
             Summary
           </Heading>
-          <Items items={order.items} />
+          <Items 
+            items={(order.items || []).map(item => ({
+              ...item,
+              title: item.title || item.variant?.product?.title || "Unknown Product"
+            }))} 
+          />
           <CartTotals totals={order} />
           <ShippingDetails order={order} />
           <PaymentDetails order={order} />

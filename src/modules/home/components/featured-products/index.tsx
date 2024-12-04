@@ -14,6 +14,7 @@ export default async function FeaturedProducts({
 }) {
   return (
     <>
+    <section className="bg-gradient-to-b from-white to-gray-100">
       {collections.map((collection) => (
         <li key={collection.id}>
           <CollectionCarousel collection={collection} region={region} />
@@ -24,6 +25,7 @@ export default async function FeaturedProducts({
           <CategoryCarousel category={category} region={region} />
         </li>
       ))} */}
+      </section>
     </>
   )
 }

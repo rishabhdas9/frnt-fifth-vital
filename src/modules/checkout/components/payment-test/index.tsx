@@ -4,7 +4,7 @@ const PaymentTest = ({ className }: { className?: string }) => {
   return (
     <Badge color="orange" className={className}>
       <span className="font-semibold">Cash on Delivery</span>
-      only.
+      
     </Badge>
   )
 }

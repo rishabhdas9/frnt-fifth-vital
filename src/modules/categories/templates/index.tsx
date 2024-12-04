@@ -28,7 +28,7 @@ export default function CategoryTemplate({
   const parents = categories.slice(0, categories.length - 1)
 
   if (!category || !countryCode) notFound()
-  const imageUrl = categoryImages[category.handle] || categoryImages["test"] // Fallback image URL
+  const imageUrl = categoryImages[category.handle] || categoryImages["tests"] // Fallback image URL
 
   return (
     <div
