@@ -22,6 +22,11 @@ type EditAddressProps = {
   address: HttpTypes.StoreCustomerAddress
   isActive?: boolean
 }
+const DEFAULT_LOCATION = {
+  province: "Karnataka",
+  city: "Bengaluru",
+}
+
 
 const EditAddress: React.FC<EditAddressProps> = ({
   region,
@@ -153,6 +158,7 @@ const EditAddress: React.FC<EditAddressProps> = ({
                 autoComplete="organization"
                 defaultValue={address.company || undefined}
                 data-testid="company-input"
+                style={{ display: "none" }}
               />
               <Input
                 label="Address"
@@ -182,16 +188,16 @@ const EditAddress: React.FC<EditAddressProps> = ({
                   label="City"
                   name="city"
                   required
-                  autoComplete="locality"
-                  defaultValue={address.city || undefined}
+                  value={DEFAULT_LOCATION.city}
+                  readOnly
                   data-testid="city-input"
                 />
               </div>
               <Input
-                label="Province / State"
+                label="State" 
                 name="province"
-                autoComplete="address-level1"
-                defaultValue={address.province || undefined}
+                value={DEFAULT_LOCATION.province}
+                readOnly
                 data-testid="state-input"
               />
               <CountrySelect
@@ -208,6 +214,7 @@ const EditAddress: React.FC<EditAddressProps> = ({
                 autoComplete="phone"
                 defaultValue={address.phone || undefined}
                 data-testid="phone-input"
+                required
               />
             </div>
             {formState.error && (

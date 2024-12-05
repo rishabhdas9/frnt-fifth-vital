@@ -17,6 +17,8 @@ export function sortProducts(
   searchQuery?: string
 ): HttpTypes.StoreProduct[] {
   let sortedProducts = products as MinPricedProduct[]
+
+  
   // First filter by search if query exists
   if (searchQuery) {
     const query = searchQuery.toLowerCase()

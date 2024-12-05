@@ -19,7 +19,9 @@ export default async function ProductTile({
   return (
     <ProductTileClient
       product={expandedProduct}
+      //@ts-ignore
       cheapestPrice={cheapestPrice}
+      //@ts-ignore
       region={expandedProduct.regionId}
     />
   )

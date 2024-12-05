@@ -36,7 +36,7 @@ export default async function ProductPreview({
 
   return (
     <Box className="group flex flex-col">
-      <Box className="relative h-[240px] bg-indigo-600 p-6 text-white flex flex-col rounded-lg">
+      <Box className="relative h-[280px] small:h-[260px] bg-indigo-600 p-6 text-white flex flex-col rounded-lg">
         <Text
           title={product.title}
           size="large"
@@ -53,7 +53,7 @@ export default async function ProductPreview({
             </div>
             <div className="flex items-center gap-2">
               <Clock className="w-4 h-4" />
-              <span>Reports within 24 hours</span>
+              <span className="small:text-sm">Reports within 24 hours</span>
             </div>
           </div>
 
@@ -72,7 +72,7 @@ export default async function ProductPreview({
             >
               <Button
                 variant="secondary"
-                className="w-full text-black border-1 border-orange-500 hover:bg-orange-50"
+                className="w-full text-black border-1 border-orange-500 hover:bg-orange-50 px-2 small:px-4"
               >
                 View Details
                 

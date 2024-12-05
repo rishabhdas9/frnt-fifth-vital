@@ -1,3 +1,4 @@
+//@ts-nocheck
 "use client"
 
 import { Heading, Text, clx } from "@medusajs/ui"
@@ -38,7 +39,7 @@ const Review = ({ cart }: { cart: any }) => {
           <div className="flex items-start gap-x-1 w-full mb-6">
             <div className="w-full">
               <Text className="txt-medium-plus text-ui-fg-base mb-1">
-                Click on the button below to confirm your booking. You'll be contacted shortly.
+                Click on the button below to confirm your booking. You will be contacted shortly.
               </Text>
             </div>
           </div>

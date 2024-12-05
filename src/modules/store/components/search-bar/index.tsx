@@ -1,8 +1,9 @@
+//@ts-nocheck
 "use client"
 
 import { Input } from "@medusajs/ui"
 import { useRouter, usePathname, useSearchParams } from "next/navigation"
-import { useCallback, useState, useEffect } from "react"
+import { useCallback, useState, useEffect, useMemo } from "react"
 import { debounce } from "lodash"
 
 const SearchBar = ({ defaultValue = "" }: { defaultValue?: string }) => {
@@ -24,29 +25,25 @@ const SearchBar = ({ defaultValue = "" }: { defaultValue?: string }) => {
     [searchParams]
   )
 
-    // Debounced function to update URL
-    const debouncedSearch = useCallback(
-        debounce((term: string) => {
-          const query = createQueryString("q", term)
-          const newQuery = new URLSearchParams(query)
-          newQuery.delete("page") // Reset pagination
-          router.push(`${pathname}?${newQuery.toString()}`)
-        }, 500), // 500ms delay
-        [createQueryString, pathname, router]
-      )
-    
-      // Cleanup debounce on unmount
-      useEffect(() => {
-        return () => {
-          debouncedSearch.cancel()
-        }
-      }, [debouncedSearch])
-    
+  const debouncedCallback = useMemo(() => {
+    return debounce((term: string) => {
+      const query = createQueryString("q", term)
+      const newQuery = new URLSearchParams(query)
+      newQuery.delete("page") // Reset pagination
+      router.push(`${pathname}?${newQuery.toString()}`)
+    }, 500)
+  }, [createQueryString, pathname, router])
+
+  useEffect(() => {
+    return () => {
+      debouncedCallback.cancel()
+    }
+  }, [debouncedCallback])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const term = e.target.value
     setValue(term)
-    debouncedSearch(term)
+    debouncedCallback(term)
   }
 
   return (

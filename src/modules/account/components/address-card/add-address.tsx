@@ -13,6 +13,10 @@ import { SubmitButton } from "@modules/checkout/components/submit-button"
 import { HttpTypes } from "@medusajs/types"
 import { addCustomerAddress } from "@lib/data/customer"
 
+const DEFAULT_LOCATION = {
+  province: "Karnataka",
+  city: "Bengaluru",
+}
 const AddAddress = ({ region }: { region: HttpTypes.StoreRegion }) => {
   const [successState, setSuccessState] = useState(false)
   const { state, open, close: closeModal } = useToggleState(false)
@@ -79,6 +83,9 @@ const AddAddress = ({ region }: { region: HttpTypes.StoreRegion }) => {
                 name="company"
                 autoComplete="organization"
                 data-testid="company-input"
+                style={{
+                  display: "none",
+                }}
               />
               <Input
                 label="Address"
@@ -105,14 +112,16 @@ const AddAddress = ({ region }: { region: HttpTypes.StoreRegion }) => {
                   label="City"
                   name="city"
                   required
-                  autoComplete="locality"
+                  value={DEFAULT_LOCATION.city}
+                  readOnly
                   data-testid="city-input"
                 />
               </div>
               <Input
-                label="Province / State"
+                label="State"
                 name="province"
-                autoComplete="address-level1"
+                value={DEFAULT_LOCATION.province}
+                readOnly
                 data-testid="state-input"
               />
               <CountrySelect
@@ -121,12 +130,14 @@ const AddAddress = ({ region }: { region: HttpTypes.StoreRegion }) => {
                 required
                 autoComplete="country"
                 data-testid="country-select"
+                className="rounded-xlarge"
               />
               <Input
                 label="Phone"
                 name="phone"
                 autoComplete="phone"
                 data-testid="phone-input"
+                required
               />
             </div>
             {formState.error && (

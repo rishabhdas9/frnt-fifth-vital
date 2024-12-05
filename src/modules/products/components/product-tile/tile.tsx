@@ -58,19 +58,19 @@ export function ProductTileClient({
 
   return (
     <Box className="group flex flex-col">
-      <Box className="relative h-[240px] bg-indigo-600 p-6 text-white flex flex-col rounded-lg">
+      <Box className="relative h-[240px] small:h-[260px] bg-indigo-600 p-6 text-white flex flex-col rounded-lg">
         {/* Title at the top */}
         <Text
           title={product.title}
           size="lg"
-          className="text-lg font-semibold mb-auto line-clamp-2"
+          className="text-xl small:text-2xl font-semibold mb-auto line-clamp-2"
         >
           {product.title}
         </Text>
   
         {/* Content right above buttons */}
         <div className="space-y-4">
-          <div className="flex items-center justify-between text-sm text-gray-300">
+          <div className="flex items-center justify-between text-gray-300 text-xs small:text-sm">
             <div className="flex items-center gap-2">
               <Users className="w-4 h-4" />
               <span>NABL Accredited</span>
@@ -85,11 +85,11 @@ export function ProductTileClient({
             <div>
               <Box className="flex items-center gap-2 text-slate-50">
                 {cheapestPrice.price_type === "sale" && (
-                  <Text size="md" className="line-through opacity-75">
+                  <Text size="md" className="line-through opacity-75 text-gray-300">
                     {formatPrice(cheapestPrice.original_price, region)}
                   </Text>
                 )}
-                <Text className="text-2xl font-bold">
+                <Text className="text-2xl font-bold tracking-tight">
                   {formatPrice(cheapestPrice.calculated_price, region)}
                 </Text>
               </Box>
